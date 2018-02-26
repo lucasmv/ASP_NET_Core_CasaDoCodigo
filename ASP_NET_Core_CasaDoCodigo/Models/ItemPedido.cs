@@ -1,17 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Runtime.Serialization;
 
 namespace ASP_NET_Core_CasaDoCodigo.Models
 {
-    public class ItemPedido
-    {
-        public int Id { get; set; }
-        public Produto Produto { get; set; }
-        public int Quantidade { get; set; }
-        public decimal PrecoUnitario { get; set; }
 
+    public class ItemPedido : BaseModel       
+    {
+        [DataMember]
+        [Required]
+        public Pedido Pedido { get; private set; }
+
+        [DataMember]
+        [Required]
+        public Produto Produto { get; private set; }
+
+        [DataMember]
+        public int Quantidade { get; private set; }
+
+        [DataMember]
+        public decimal PrecoUnitario { get; private set; }
+
+        [DataMember]
         public decimal Subtotal
         {
             get
@@ -20,13 +29,14 @@ namespace ASP_NET_Core_CasaDoCodigo.Models
             }
         }
 
-        public ItemPedido(int id, Produto produto, int quantidade) : this(produto, quantidade)
+        public ItemPedido(int id, Pedido pedido, Produto produto, int quantidade) : this(pedido, produto, quantidade)
         {
             this.Id = id;
         }
 
-        public ItemPedido(Produto produto, int quantidade)
+        public ItemPedido(Pedido pedido, Produto produto, int quantidade)
         {
+            this.Pedido = pedido;
             this.Produto = produto;
             this.Quantidade = quantidade;
             this.PrecoUnitario = produto.Preco;
@@ -35,6 +45,11 @@ namespace ASP_NET_Core_CasaDoCodigo.Models
         public ItemPedido()
         {
 
+        }
+
+        public void AtualizaQuantidade(int quantidade)
+        {
+            this.Quantidade = quantidade;
         }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using ASP_NET_Core_CasaDoCodigo.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ASP_NET_Core_CasaDoCodigo
 {
@@ -16,5 +12,6 @@ namespace ASP_NET_Core_CasaDoCodigo
 
         public DbSet<Produto> Produtos { get; set; }
         public DbSet<ItemPedido> ItensPedido { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
     }
 }

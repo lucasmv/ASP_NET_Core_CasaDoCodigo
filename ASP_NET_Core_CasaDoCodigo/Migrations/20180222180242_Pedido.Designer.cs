@@ -8,9 +8,10 @@ using ASP_NET_Core_CasaDoCodigo;
 namespace ASP_NET_Core_CasaDoCodigo.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20180222180242_Pedido")]
+    partial class Pedido
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.5")
@@ -21,11 +22,11 @@ namespace ASP_NET_Core_CasaDoCodigo.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("PedidoId");
+                    b.Property<int?>("PedidoId");
 
                     b.Property<decimal>("PrecoUnitario");
 
-                    b.Property<int>("ProdutoId");
+                    b.Property<int?>("ProdutoId");
 
                     b.Property<int>("Quantidade");
 
@@ -66,13 +67,11 @@ namespace ASP_NET_Core_CasaDoCodigo.Migrations
                 {
                     b.HasOne("ASP_NET_Core_CasaDoCodigo.Models.Pedido", "Pedido")
                         .WithMany("Itens")
-                        .HasForeignKey("PedidoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("PedidoId");
 
                     b.HasOne("ASP_NET_Core_CasaDoCodigo.Models.Produto", "Produto")
                         .WithMany()
-                        .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("ProdutoId");
                 });
         }
     }

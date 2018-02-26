@@ -8,5 +8,8 @@ namespace ASP_NET_Core_CasaDoCodigo
         void InicializaDB();
         List<Produto> GetProdutos();
         List<ItemPedido> GetItensPedido();
+        UpdateItemPedidoResponse UpdateItemPedido(ItemPedido itemPedido);
+        void AddItemPedido (int produtoId);
+        Pedido GetPedido();
     }
 }

@@ -30,6 +30,8 @@ namespace ASP_NET_Core_CasaDoCodigo
         {
             // Add framework services.
             services.AddMvc();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
 
             var connectionString = Configuration.GetSection("ConnectionsStrings").GetValue<string>("Default");
             services.AddDbContext<Contexto>(options => options.UseSqlServer(connectionString));
@@ -55,6 +57,7 @@ namespace ASP_NET_Core_CasaDoCodigo
 
             app.UseStaticFiles();
 
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
